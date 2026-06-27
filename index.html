@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>M A Fazal & Co. — Recruitment Aptitude Exam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBFBF8; --ink:#14211C; --ink-soft:#4A5A53;
+    --emerald:#15604A; --emerald-deep:#0F3D2F; --emerald-tint:#EEF4F0;
+    --brass:#B68A2E; --brass-soft:#C9A14A; --brass-tint:#FBF4E3;
+    --line:#E6E4DB; --danger:#C0392B; --warn:#C77B1E; --ok:#15604A;
+    --shadow:0 10px 40px rgba(15,61,47,.10);
+    --serif:'Spectral',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:var(--sans); color:var(--ink); background:var(--paper);
+    background-image:radial-gradient(1200px 480px at 50% -260px, #f0f5f1 0%, rgba(240,245,241,0) 70%);
+    -webkit-font-smoothing:antialiased; line-height:1.5; min-height:100vh; padding-bottom:64px;}
+  a{color:var(--emerald)}
+  .masthead{border-bottom:1px solid var(--line); background:rgba(251,251,248,.9);
+    backdrop-filter:saturate(140%) blur(6px); position:sticky; top:0; z-index:40;}
+  .masthead-in{max-width:880px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:14px}
+  .seal{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none;
+    background:var(--emerald-deep);color:#fff;font-family:var(--serif);font-weight:700;font-size:17px;
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,.25), 0 0 0 3px var(--brass-soft);}
+  .mast-title{font-family:var(--serif);font-weight:600;font-size:18px;letter-spacing:.2px;line-height:1.1}
+  .mast-sub{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--brass);margin-top:2px}
+  .wrap{max-width:880px;margin:0 auto;padding:26px 22px 40px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);
+    padding:30px; position:relative; overflow:hidden;}
+  .card::before{content:"";position:absolute;left:0;top:0;height:4px;width:100%;
+    background:linear-gradient(90deg,var(--emerald) 0%, var(--emerald) 60%, var(--brass-soft) 60%, var(--brass-soft) 100%)}
+  .screen{display:none; animation:fade .35s ease both}
+  .screen.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.screen{animation:none}}
+  h1{font-family:var(--serif);font-weight:600;font-size:28px;margin:0 0 6px;line-height:1.15}
+  h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:0 0 4px}
+  .lead{color:var(--ink-soft);font-size:15px;margin:0 0 22px;max-width:60ch}
+  .eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--brass);font-weight:600;margin-bottom:10px}
+  .rules{list-style:none;padding:0;margin:0 0 26px;display:grid;gap:10px}
+  .rules li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:#2c3a34}
+  .rules .tick{flex:none;width:22px;height:22px;border-radius:6px;background:var(--emerald-tint);
+    color:var(--emerald);display:grid;place-items:center;font-size:13px;font-weight:700;margin-top:1px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:620px){.grid2{grid-template-columns:1fr}}
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+  .field.full{grid-column:1/-1}
+  label{font-size:13px;font-weight:600;color:#34433d}
+  label .req{color:var(--brass)}
+  input,select,textarea{font-family:var(--sans);font-size:15px;color:var(--ink);background:#fff;
+    border:1px solid var(--line);border-radius:10px;padding:11px 13px;width:100%;transition:border-color .15s,box-shadow .15s;}
+  textarea{resize:vertical;min-height:64px}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--emerald);box-shadow:0 0 0 3px rgba(21,96,74,.14)}
+  .agree{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:#34433d;margin:4px 0 22px}
+  .agree input{width:18px;height:18px;flex:none;margin-top:1px}
+  .btn{font-family:var(--sans);font-weight:600;font-size:15px;border:none;border-radius:11px;
+    padding:13px 22px;cursor:pointer;transition:transform .08s ease, box-shadow .15s, background .15s; display:inline-flex;align-items:center;gap:8px}
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{background:var(--emerald);color:#fff;box-shadow:0 6px 18px rgba(21,96,74,.25)}
+  .btn-primary:hover{background:#13543f}
+  .btn-ghost{background:transparent;color:var(--emerald);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--emerald)}
+  .btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  :focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+  .otp-input{font-family:var(--mono);font-size:30px;letter-spacing:14px;text-align:center;padding:14px}
+  .muted{color:var(--ink-soft);font-size:13px}
+  .exam-top{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line);margin:-30px -30px 22px;padding:14px 30px 12px}
+  .totalbar-row{display:flex;align-items:center;gap:12px}
+  .totalbar{flex:1;height:8px;background:#eee;border-radius:99px;overflow:hidden}
+  .totalbar > span{display:block;height:100%;width:100%;background:var(--emerald);transition:width 1s linear, background .4s}
+  .total-time{font-family:var(--mono);font-weight:700;font-size:15px;color:var(--emerald);min-width:64px;text-align:right}
+  .total-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft)}
+  .qhead{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:14px}
+  .qmeta{display:flex;flex-direction:column;gap:7px}
+  .qcount{font-size:13px;color:var(--ink-soft);font-weight:600}
+  .chip{align-self:flex-start;font-size:11px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;
+    background:var(--emerald-tint);color:var(--emerald);padding:5px 11px;border-radius:99px}
+  .chip.identity{background:var(--brass-tint);color:#8a6418}
+  .ring{position:relative;width:92px;height:92px;flex:none}
+  .ring svg{transform:rotate(-90deg)}
+  .ring .track{fill:none;stroke:#eceae2;stroke-width:8}
+  .ring .prog{fill:none;stroke:var(--emerald);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset 1s linear, stroke .4s}
+  .ring .num{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:24px;color:var(--ink)}
+  .ring.warn .prog{stroke:var(--warn)} .ring.warn .num{color:var(--warn)}
+  .ring.danger .prog{stroke:var(--danger)} .ring.danger .num{color:var(--danger)}
+  .identity-banner{background:var(--brass-tint);border:1px solid #ecdcb6;color:#7a5912;
+    border-radius:10px;padding:9px 13px;font-size:13px;font-weight:600;margin-bottom:14px;display:flex;gap:8px;align-items:center}
+  .qtext{font-family:var(--serif);font-size:21px;line-height:1.4;color:var(--ink);margin:6px 0 18px}
+  .options{display:grid;gap:11px;margin-bottom:22px}
+  .opt{display:flex;gap:13px;align-items:center;text-align:left;border:1.5px solid var(--line);background:#fff;
+    border-radius:12px;padding:14px 16px;cursor:pointer;font-size:15.5px;color:var(--ink);transition:border-color .12s,background .12s;width:100%;font-family:var(--sans)}
+  .opt:hover{border-color:var(--brass-soft);background:#fffdf7}
+  .opt .key{flex:none;width:28px;height:28px;border-radius:8px;border:1.5px solid var(--line);display:grid;place-items:center;
+    font-weight:700;font-size:14px;color:var(--ink-soft);font-family:var(--mono)}
+  .opt.selected{border-color:var(--emerald);background:var(--emerald-tint)}
+  .opt.selected .key{background:var(--emerald);border-color:var(--emerald);color:#fff}
+  .exam-foot{display:flex;justify-content:space-between;align-items:center;gap:14px;border-top:1px solid var(--line);padding-top:16px;flex-wrap:wrap}
+  .exam-hint{font-size:12.5px;color:var(--ink-soft);max-width:46ch}
+  .score-wrap{text-align:center;padding:8px 0 4px}
+  .score-ring{width:150px;height:150px;margin:6px auto 14px;position:relative}
+  .score-ring svg{transform:rotate(-90deg)}
+  .score-ring .num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700}
+  .score-num{font-size:38px} .score-of{font-size:11px;color:var(--ink-soft);font-family:var(--sans);font-weight:600;letter-spacing:1px}
+  .verdict{font-family:var(--serif);font-size:26px;font-weight:600;margin:2px 0 4px}
+  .verdict.pass{color:var(--emerald)} .verdict.fail{color:var(--danger)}
+  .branches{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0 10px}
+  @media (max-width:620px){.branches{grid-template-columns:1fr}}
+  .branch{border:1.5px solid var(--line);border-radius:14px;padding:16px;cursor:pointer;transition:border-color .12s,box-shadow .12s;background:#fff;text-align:left;width:100%;font-family:var(--sans)}
+  .branch:hover{border-color:var(--emerald);box-shadow:0 6px 18px rgba(21,96,74,.10)}
+  .branch.selected{border-color:var(--emerald);background:var(--emerald-tint)}
+  .branch-name{font-family:var(--serif);font-weight:600;font-size:16px;margin-bottom:4px;color:var(--ink)}
+  .branch-addr{font-size:12.5px;color:var(--ink-soft)}
+  .notice{border-left:3px solid var(--brass);background:var(--brass-tint);border-radius:0 10px 10px 0;
+    padding:14px 16px;font-size:13.5px;color:#5d4a1e;margin-top:18px;line-height:1.55}
+  .passcard{border:2px solid var(--emerald);border-radius:16px;overflow:hidden;margin:18px 0}
+  .passcard-head{background:var(--emerald);color:#fff;padding:16px 20px}
+  .passcard-head .pc-firm{font-size:12px;letter-spacing:2px;text-transform:uppercase;opacity:.85}
+  .passcard-head .pc-title{font-family:var(--serif);font-size:20px;font-weight:700;margin-top:2px}
+  .passcard-body{padding:18px 20px}
+  .pc-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:14px}
+  .pc-row:last-child{border-bottom:none}
+  .pc-k{color:var(--ink-soft)} .pc-v{font-weight:600;text-align:right;color:var(--ink)}
+  .credit{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--emerald-deep);color:#dfe9e4;
+    font-size:11.5px;text-align:center;padding:9px 16px;letter-spacing:.2px;line-height:1.4}
+  .credit b{color:#fff;font-weight:600}
+  .toast{position:fixed;left:50%;bottom:78px;transform:translateX(-50%) translateY(20px);z-index:80;
+    background:#1d2a25;color:#fff;padding:12px 18px;border-radius:12px;font-size:13.5px;box-shadow:0 10px 30px rgba(0,0,0,.25);
+    opacity:0;pointer-events:none;transition:opacity .25s, transform .25s;max-width:90vw}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .toast.warn{background:#7a2018}
+  .overlay{position:fixed;inset:0;z-index:70;background:rgba(15,33,28,.45);display:none;place-items:center}
+  .overlay.show{display:grid}
+  .spinner{width:42px;height:42px;border-radius:50%;border:4px solid rgba(255,255,255,.3);border-top-color:#fff;animation:spin .8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .err{color:var(--danger);font-size:13px;margin-top:6px;min-height:16px}
+  @media print{
+    body * { visibility:hidden !important; }
+    #print-area, #print-area * { visibility:visible !important; }
+    #print-area{ position:absolute; left:0; top:0; width:100%; padding:10px; }
+    .masthead, .credit, .toast, .overlay, .notice, .btn-row{ display:none !important; }
+  }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-in">
+    <div class="seal">MAF</div>
+    <div>
+      <div class="mast-title">M A Fazal &amp; Co. <span style="font-weight:400;color:var(--ink-soft)">— Chartered Accountants</span></div>
+      <div class="mast-sub">Prospective Student Aptitude Exam</div>
+    </div>
+  </div>
+</header>
+<main class="wrap">
+  <div class="card">
+    <!-- WELCOME -->
+    <section id="screen-welcome" class="screen active">
+      <div class="eyebrow">Recruitment · Articleship Intake</div>
+      <h1>Aptitude exam for prospective students</h1>
+      <p class="lead">A 20-minute, time-pressured assessment blending basic English, analytical ability, medium-level critical reasoning, accounting fundamentals and the use of AI tools at work.</p>
+      <ul class="rules">
+        <li><span class="tick">1</span><span><b>30 questions in 20 minutes.</b> The 20 minutes is a shared budget. Each question also has its own time limit — submit your answer to move on, or it advances automatically when that limit is reached.</span></li>
+        <li><span class="tick">2</span><span><b>One direction only.</b> After you answer, submit to get the next question. You cannot return to a previous question.</span></li>
+        <li><span class="tick">3</span><span><b>Random identity checks</b> with a short timer will appear during the exam. Answer them from your own registration details.</span></li>
+        <li><span class="tick">4</span><span><b>Every paper is unique.</b> The questions you receive and the order of the options differ from other candidates.</span></li>
+        <li><span class="tick">5</span><span><b>Stay on this screen.</b> Leaving the exam tab to search elsewhere is recorded — and only wastes your limited time.</span></li>
+        <li><span class="tick">6</span><span><b>Pass mark is 50%.</b> Passing candidates choose an office and receive interview details.</span></li>
+      </ul>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="go('register')">Begin registration</button>
+        <span class="muted">Takes about 2 minutes to register.</span>
+      </div>
+    </section>
+
+    <!-- REGISTER -->
+    <section id="screen-register" class="screen">
+      <div class="eyebrow">Step 1 of 3 · Registration</div>
+      <h2>Your details</h2>
+      <p class="lead">We collect the basic information required under ICAB guidelines. A verification code will be e-mailed to confirm you are a real candidate.</p>
+      <div class="grid2">
+        <div class="field"><label>Full name <span class="req">*</span></label><input id="r-name" type="text" autocomplete="name" placeholder="As per your certificate"></div>
+        <div class="field"><label>E-mail address <span class="req">*</span></label><input id="r-email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+        <div class="field"><label>Mobile number</label><input id="r-mobile" type="tel" inputmode="tel" placeholder="01XXXXXXXXX"></div>
+        <div class="field"><label>Date of birth <span class="req">*</span></label><input id="r-dob" type="date"></div>
+        <div class="field full"><label>University / Educational institute <span class="req">*</span></label><input id="r-institute" type="text" placeholder="e.g. University of Dhaka"></div>
+        <div class="field"><label>Maximum level of education <span class="req">*</span></label>
+          <select id="r-education">
+            <option value="">Select…</option>
+            <option>SSC</option><option>HSC</option><option>Diploma</option>
+            <option>Bachelor's (Honours)</option><option>Master's</option><option>CA (CC / Partly qualified)</option><option>Other</option>
+          </select>
+        </div>
+        <div class="field"><label>Last education passing year <span class="req">*</span></label><input id="r-passyear" type="number" min="1960" max="2100" placeholder="e.g. 2023"></div>
+        <div class="field"><label>Father's name <span class="req">*</span></label><input id="r-father" type="text"></div>
+        <div class="field"><label>Mother's name <span class="req">*</span></label><input id="r-mother" type="text"></div>
+        <div class="field"><label>Home district <span class="req">*</span></label>
+          <input id="r-district" type="text" list="district-list" placeholder="e.g. Dhaka">
+          <datalist id="district-list"></datalist>
+        </div>
+        <div class="field"><label>Nationality</label><input id="r-nationality" type="text" value="Bangladeshi"></div>
+        <div class="field full"><label>Present address</label><textarea id="r-address" placeholder="House, road, area, city"></textarea></div>
+      </div>
+      <label class="agree"><input id="r-agree" type="checkbox">
+        <span>I confirm the information above is true and correct, and I agree to sit this assessment under the guidelines of the Institute of Chartered Accountants of Bangladesh (ICAB).</span>
+      </label>
+      <div class="err" id="register-err"></div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="go('welcome')">Back</button>
+        <button class="btn btn-primary" id="register-btn" onclick="submitRegistration()">Send verification code</button>
+      </div>
+    </section>
+
+    <!-- VALIDATE -->
+    <section id="screen-validate" class="screen">
+      <div class="eyebrow">Step 2 of 3 · E-mail verification</div>
+      <h2>Enter your verification code</h2>
+      <p class="lead" id="validate-lead">We've e-mailed a 6-digit code. Enter it below to confirm your identity and unlock the exam.</p>
+      <div class="field" style="max-width:340px">
+        <label>6-digit code <span class="req">*</span></label>
+        <input id="v-code" class="otp-input" type="text" inputmode="numeric" maxlength="6" placeholder="••••••">
+      </div>
+      <div class="err" id="validate-err"></div>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="validate-btn" onclick="submitCode()">Verify &amp; continue</button>
+        <button class="btn btn-ghost" id="resend-btn" onclick="resendCode()">Resend code</button>
+      </div>
+    </section>
+
+    <!-- READY -->
+    <section id="screen-ready" class="screen">
+      <div class="eyebrow">Step 3 of 3 · You're verified</div>
+      <h2>Ready to begin</h2>
+      <p class="lead">The clock starts the moment you begin. Make sure you have a stable connection and will not be interrupted for the next 20 minutes.</p>
+      <ul class="rules">
+        <li><span class="tick">✓</span><span>Two timers run together: a <b>ring</b> for the current question and a <b>bar</b> for your total 20 minutes.</span></li>
+        <li><span class="tick">✓</span><span><b>Submit &amp; next</b> moves you forward as soon as you've answered. If a question's ring reaches zero first, it advances automatically.</span></li>
+        <li><span class="tick">✓</span><span>You may end and submit the whole exam early at any time using <b>End exam</b>.</span></li>
+      </ul>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="start-btn" onclick="beginExam()">Start exam now</button>
+      </div>
+    </section>
+
+    <!-- EXAM -->
+    <section id="screen-exam" class="screen">
+      <div class="exam-top">
+        <div class="totalbar-row">
+          <span class="total-label">Total&nbsp;time</span>
+          <div class="totalbar"><span id="total-fill"></span></div>
+          <span class="total-time" id="total-time">20:00</span>
+        </div>
+      </div>
+      <div class="qhead">
+        <div class="qmeta">
+          <span class="qcount" id="q-count">Question 1</span>
+          <span class="chip" id="q-chip">English</span>
+        </div>
+        <div class="ring" id="q-ring">
+          <svg width="92" height="92" viewBox="0 0 92 92">
+            <circle class="track" cx="46" cy="46" r="40"></circle>
+            <circle class="prog" cx="46" cy="46" r="40" id="ring-prog"></circle>
+          </svg>
+          <div class="num" id="ring-num">40</div>
+        </div>
+      </div>
+      <div class="identity-banner" id="identity-banner" style="display:none">
+        <span>⚠️</span><span>Identity check — answer from your own registration details. Short timer.</span>
+      </div>
+      <div class="qtext" id="q-text">—</div>
+      <div class="options" id="q-options"></div>
+      <div class="exam-foot">
+        <span class="exam-hint">Select your answer, then <b>Submit &amp; next</b> to get the next question. A question also advances when its timer ends. You can't go back.</span>
+        <div class="btn-row">
+          <button class="btn btn-ghost" onclick="confirmEnd()">End exam</button>
+          <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()" disabled>Submit &amp; next</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PASS -->
+    <section id="screen-pass" class="screen">
+      <div class="score-wrap">
+        <div class="eyebrow">Result</div>
+        <div class="score-ring">
+          <svg width="150" height="150" viewBox="0 0 150 150">
+            <circle cx="75" cy="75" r="64" fill="none" stroke="#eceae2" stroke-width="11"></circle>
+            <circle cx="75" cy="75" r="64" fill="none" stroke="var(--emerald)" stroke-width="11" stroke-linecap="round" id="pass-score-prog"></circle>
+          </svg>
+          <div class="num"><span class="score-num" id="pass-score-num" style="color:var(--emerald)">0%</span><span class="score-of">YOUR SCORE</span></div>
+        </div>
+        <div class="verdict pass">Congratulations — you passed</div>
+        <p class="muted" id="pass-detail">You answered 0 of 0 correctly.</p>
+      </div>
+      <h2 style="margin-top:24px">Choose the office you wish to join</h2>
+      <p class="lead">Select one of our four Dhaka offices. You'll receive interview details for that office.</p>
+      <div class="branches" id="branch-grid"></div>
+      <div class="err" id="branch-err"></div>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="branch-btn" onclick="submitBranch()" disabled>Confirm office &amp; get interview details</button>
+      </div>
+    </section>
+
+    <!-- FAIL -->
+    <section id="screen-fail" class="screen">
+      <div class="score-wrap">
+        <div class="eyebrow">Result</div>
+        <div class="score-ring">
+          <svg width="150" height="150" viewBox="0 0 150 150">
+            <circle cx="75" cy="75" r="64" fill="none" stroke="#eceae2" stroke-width="11"></circle>
+            <circle cx="75" cy="75" r="64" fill="none" stroke="var(--danger)" stroke-width="11" stroke-linecap="round" id="fail-score-prog"></circle>
+          </svg>
+          <div class="num"><span class="score-num" id="fail-score-num" style="color:var(--danger)">0%</span><span class="score-of">YOUR SCORE</span></div>
+        </div>
+        <div class="verdict fail">Thank you for taking the exam</div>
+        <p class="muted" id="fail-detail">You answered 0 of 0 correctly.</p>
+      </div>
+      <div class="notice" id="fail-note">
+        Unfortunately you did not reach the 50% pass mark on this attempt, so the next step is not available.
+        Your submission has been recorded. We genuinely appreciate your interest in M A Fazal &amp; Co. and wish you the very best.
+      </div>
+    </section>
+
+    <!-- DONE -->
+    <section id="screen-done" class="screen">
+      <div class="eyebrow">All set</div>
+      <h2>Your interview is scheduled</h2>
+      <p class="lead" id="done-lead">Please save or print the pass card below and bring it to your interview.</p>
+      <div id="print-area">
+        <div class="passcard">
+          <div class="passcard-head">
+            <div class="pc-firm">M A Fazal &amp; Co. — Chartered Accountants</div>
+            <div class="pc-title">Aptitude Exam — Pass Card</div>
+          </div>
+          <div class="passcard-body" id="passcard-body"></div>
+        </div>
+      </div>
+      <div class="notice">
+        <b>What to bring:</b> a printed, updated CV and all relevant academic certificates &amp; mark sheets (originals plus one set of photocopies), a copy of this pass card, and a valid photo ID.<br><br>
+        After a successful interview, please note you may need to wait approximately <b>1 to 2 months</b> for registration formalities. The firm will decide and assign the Principal for your respective branch.
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="window.print()">Print / save pass card</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<div class="credit" id="credit">
+  Developed by <b>Md Shakhawat Hossain FCA</b>, Partner &amp; Branch In-charge, Panthapath Branch, M A Fazal &amp; Co., Chartered Accountants
+</div>
+<div class="toast" id="toast"></div>
+<div class="overlay" id="overlay"><div class="spinner"></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* =====================================================================================
+   1.  CONFIGURE THESE TWO VALUES  (Supabase > Project Settings > API). Both are public/safe.
+   ===================================================================================== */
+const SUPABASE_URL      = 'https://rrefdspxbujvqntzjgpl.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJyZWZkc3B4YnVqdnFudHpqZ3BsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI1NjQwNTgsImV4cCI6MjA5ODE0MDA1OH0.R_YPFO9p79RdXOJQC000ZL_YW0RabJQDNg3JsvPZZd4';
+/* ===================================================================================== */
+
+let sb = null;
+try { sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); } catch (e) {}
+
+var STATE = {
+  boot:null, email:'', token:'', lastForm:null, passName:'', passPercent:0,
+  items:[], idx:0, answers:{}, branches:[], selectedBranch:null, allowEarly:true,
+  totalRemaining:0, qRemaining:0, qLimit:0, tickInt:null, focusLoss:0, finished:false
+};
+var CIRC = 2 * Math.PI * 40, CIRC_BIG = 2 * Math.PI * 64;
+
+/* ---------- boot ---------- */
+window.addEventListener('DOMContentLoaded', async function(){
+  document.getElementById('ring-prog').style.strokeDasharray = CIRC;
+  ['pass-score-prog','fail-score-prog'].forEach(function(id){
+    var el=document.getElementById(id); el.style.strokeDasharray = CIRC_BIG; el.style.strokeDashoffset = CIRC_BIG;
+  });
+  ['Dhaka','Chattogram','Khulna','Rajshahi','Sylhet','Barishal','Rangpur','Mymensingh','Comilla','Gazipur','Narayanganj','Bogura','Jashore',"Cox's Bazar",'Dinajpur','Pabna','Tangail','Kushtia','Faridpur','Noakhali','Feni']
+    .forEach(function(d){ var o=document.createElement('option'); o.value=d; document.getElementById('district-list').appendChild(o); });
+
+  if (!sb || SUPABASE_URL.indexOf('YOUR-PROJECT') !== -1 || SUPABASE_ANON_KEY.indexOf('YOUR-PUBLIC') !== -1) {
+    toast('App not configured: add your Supabase URL and anon key in index.html.', true);
+    return;
+  }
+  try {
+    const boot = await rpc('get_bootstrap');
+    STATE.boot = boot;
+    if (boot && boot.developerCredit) {
+      document.getElementById('credit').innerHTML =
+        escapeHtml(boot.developerCredit).replace('Md Shakhawat Hossain FCA','<b>Md Shakhawat Hossain FCA</b>');
+    }
+  } catch (e) { toast('Could not reach the server. Check your connection and config.', true); }
+});
+
+/* ---------- supabase + ui helpers ---------- */
+async function rpc(fn, args){
+  const { data, error } = await sb.rpc(fn, args || {});
+  if (error) throw error;
+  return data;
+}
+function go(name){
+  document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('active'); });
+  document.getElementById('screen-'+name).classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function busy(on){ document.getElementById('overlay').classList.toggle('show', !!on); }
+var toastT;
+function toast(msg, warn){
+  var t=document.getElementById('toast'); t.textContent=msg; t.className='toast show'+(warn?' warn':'');
+  clearTimeout(toastT); toastT=setTimeout(function(){ t.className='toast'; }, 3600);
+}
+function val(id){ return (document.getElementById(id).value||'').trim(); }
+function setBtn(id, disabled, text){ var b=document.getElementById(id); b.disabled=disabled; if(text) b.textContent=text; }
+function escapeHtml(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+/* ============ STEP 1: REGISTER ============ */
+async function submitRegistration(){
+  var f = {
+    name:val('r-name'), email:val('r-email'), mobile:val('r-mobile'), dob:val('r-dob'),
+    institute:val('r-institute'), educationLevel:val('r-education'), passingYear:val('r-passyear'),
+    fatherName:val('r-father'), motherName:val('r-mother'), homeDistrict:val('r-district'),
+    nationality:val('r-nationality'), presentAddress:val('r-address')
+  };
+  var err = document.getElementById('register-err'); err.textContent='';
+  var need = [['name','full name'],['email','e-mail'],['dob','date of birth'],['institute','institute'],
+              ['educationLevel','education level'],['passingYear','passing year'],
+              ['fatherName',"father's name"],['motherName',"mother's name"],['homeDistrict','home district']];
+  for (var i=0;i<need.length;i++){ if(!f[need[i][0]]){ err.textContent='Please fill in your '+need[i][1]+'.'; return; } }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)){ err.textContent='Please enter a valid e-mail address.'; return; }
+  if(!document.getElementById('r-agree').checked){ err.textContent='Please confirm the declaration to continue.'; return; }
+
+  STATE.lastForm = f; STATE.email = f.email.toLowerCase(); STATE.passName = f.name;
+  setBtn('register-btn', true, 'Sending…'); busy(true);
+  try {
+    const reg = await rpc('register_candidate', { payload: f });
+    if(!reg.success){ err.textContent = reg.message; return; }
+    const { error } = await sb.auth.signInWithOtp({ email: STATE.email, options:{ shouldCreateUser:true } });
+    if(error){ err.textContent = error.message; return; }
+    document.getElementById('validate-lead').textContent =
+      "We've e-mailed a 6-digit code to "+STATE.email+". Enter it below to confirm your identity and unlock the exam.";
+    go('validate'); toast('Verification code sent.');
+  } catch(e){ err.textContent = (e && e.message) ? e.message : 'Something went wrong. Please try again.'; }
+  finally { busy(false); setBtn('register-btn', false, 'Send verification code'); }
+}
+async function resendCode(){
+  if(!STATE.lastForm){ go('register'); return; }
+  setBtn('resend-btn', true, 'Sending…');
+  try {
+    await rpc('register_candidate', { payload: STATE.lastForm });
+    const { error } = await sb.auth.signInWithOtp({ email: STATE.email, options:{ shouldCreateUser:true } });
+    toast(error ? error.message : 'A new code has been sent.', !!error);
+  } catch(e){ toast('Could not resend. Try again.', true); }
+  finally { setBtn('resend-btn', false, 'Resend code'); }
+}
+
+/* ============ STEP 2: VERIFY ============ */
+async function submitCode(){
+  var code = val('v-code'); var err=document.getElementById('validate-err'); err.textContent='';
+  if(!/^\d{6}$/.test(code)){ err.textContent='Enter the 6-digit code from your e-mail.'; return; }
+  setBtn('validate-btn', true, 'Verifying…'); busy(true);
+  try {
+    const { error } = await sb.auth.verifyOtp({ email: STATE.email, token: code, type: 'email' });
+    if(error){ err.textContent = 'The code is incorrect or has expired. Please try again.'; return; }
+    go('ready'); toast('Verified. Read the instructions, then start.');
+  } catch(e){ err.textContent = 'Verification failed. Please try again.'; }
+  finally { busy(false); setBtn('validate-btn', false, 'Verify & continue'); }
+}
+
+/* ============ STEP 3: EXAM ============ */
+async function beginExam(){
+  setBtn('start-btn', true, 'Preparing your paper…'); busy(true);
+  try {
+    const res = await rpc('start_exam');
+    if(!res.success){ toast(res.message, true); return; }
+    STATE.token = res.token; STATE.items = res.items; STATE.idx=0; STATE.answers={};
+    STATE.totalRemaining = res.totalTimeSec; STATE.finished=false; STATE.focusLoss=0;
+    STATE.allowEarly = !!res.allowEarlyAdvance;
+    go('exam');
+    document.getElementById('total-fill').style.background='var(--emerald)';
+    renderQuestion(); updateTotal(); startTicking(); attachFocusWatch();
+  } catch(e){ toast('Could not start the exam. Please try again.', true); }
+  finally { busy(false); setBtn('start-btn', false, 'Start exam now'); }
+}
+
+function renderQuestion(){
+  var it = STATE.items[STATE.idx];
+  document.getElementById('q-count').textContent = 'Question '+(STATE.idx+1)+' of '+STATE.items.length;
+  var chip = document.getElementById('q-chip');
+  chip.textContent = it.category; chip.className = 'chip' + (it.type==='identity' ? ' identity' : '');
+  document.getElementById('identity-banner').style.display = it.type==='identity' ? 'flex' : 'none';
+  document.getElementById('q-text').textContent = it.question;
+
+  var box = document.getElementById('q-options'); box.innerHTML='';
+  var letters=['A','B','C','D','E','F'];
+  it.options.forEach(function(opt, i){
+    var b=document.createElement('button'); b.type='button'; b.className='opt';
+    b.onclick=function(){ selectOption(i); };
+    b.innerHTML='<span class="key">'+letters[i]+'</span><span>'+escapeHtml(opt)+'</span>';
+    if(STATE.answers[it.key]===i) b.classList.add('selected');
+    box.appendChild(b);
+  });
+
+  var nb=document.getElementById('next-btn');
+  if(STATE.allowEarly){
+    nb.style.display='';
+    nb.disabled = !(it.key in STATE.answers);
+    nb.textContent = (STATE.idx+1 >= STATE.items.length) ? 'Submit & finish' : 'Submit & next';
+  } else { nb.style.display='none'; }
+
+  STATE.qLimit = it.timeLimit;
+  STATE.qRemaining = Math.min(it.timeLimit, STATE.totalRemaining);
+  updateRing();
+}
+
+function selectOption(i){
+  var it = STATE.items[STATE.idx];
+  STATE.answers[it.key] = i;
+  document.querySelectorAll('#q-options .opt').forEach(function(o,k){ o.classList.toggle('selected', k===i); });
+  if(STATE.allowEarly){ document.getElementById('next-btn').disabled = false; }
+}
+
+function startTicking(){
+  clearInterval(STATE.tickInt);
+  STATE.tickInt = setInterval(function(){
+    STATE.totalRemaining--; STATE.qRemaining--;
+    updateTotal(); updateRing();
+    if(STATE.totalRemaining <= 0){ finishExam(); return; }
+    if(STATE.qRemaining <= 0){ advance(); }
+  }, 1000);
+}
+
+function advance(){
+  if(STATE.idx + 1 >= STATE.items.length){ finishExam(); return; }
+  STATE.idx++; renderQuestion();
+}
+
+function nextQuestion(){
+  var it = STATE.items[STATE.idx];
+  if(!(it.key in STATE.answers)) return;   // must answer before moving on
+  advance();
+}
+
+function updateRing(){
+  var rem = Math.max(0, STATE.qRemaining);
+  document.getElementById('ring-num').textContent = rem;
+  var frac = STATE.qLimit>0 ? rem/STATE.qLimit : 0;
+  document.getElementById('ring-prog').style.strokeDashoffset = CIRC * (1 - frac);
+  var ring=document.getElementById('q-ring'); ring.classList.remove('warn','danger');
+  if(frac <= 0.2) ring.classList.add('danger'); else if(frac <= 0.5) ring.classList.add('warn');
+}
+
+function updateTotal(){
+  var rem=Math.max(0, STATE.totalRemaining);
+  var m=Math.floor(rem/60), s=rem%60;
+  document.getElementById('total-time').textContent = m+':'+(s<10?'0':'')+s;
+  var total = STATE.boot ? STATE.boot.exam.totalTimeSec : 1200;
+  var fill=document.getElementById('total-fill');
+  fill.style.width = (rem/total*100)+'%';
+  if(rem <= total*0.1) fill.style.background='var(--danger)';
+  else if(rem <= total*0.25) fill.style.background='var(--warn)';
+  else fill.style.background='var(--emerald)';
+}
+
+function confirmEnd(){
+  if(confirm('End the exam now and submit your answers? This cannot be undone.')) finishExam();
+}
+
+async function finishExam(){
+  if(STATE.finished) return; STATE.finished=true;
+  clearInterval(STATE.tickInt); detachFocusWatch();
+  var total = STATE.boot ? STATE.boot.exam.totalTimeSec : 1200;
+  var meta = { focusLossCount: STATE.focusLoss, timeTakenSec: total - Math.max(0, STATE.totalRemaining) };
+  var ans = STATE.items.map(function(it){ return { key:it.key, selectedIndex: (it.key in STATE.answers)? STATE.answers[it.key] : null }; });
+  busy(true);
+  try {
+    const res = await rpc('submit_exam', { p_token: STATE.token, p_answers: ans, p_meta: meta });
+    showResult(res);
+  } catch(e){ toast('Could not submit. Please check your connection.', true); STATE.finished=false; }
+  finally { busy(false); }
+}
+
+/* ---------- results ---------- */
+function showResult(res){
+  if(!res || !res.success){ toast((res&&res.message)||'Submission failed.', true); return; }
+  STATE.passPercent = res.percent;
+  if(res.passed){
+    setScoreRing('pass-score-prog','pass-score-num', res.percent, 'var(--emerald)');
+    document.getElementById('pass-detail').textContent =
+      'You answered '+res.correct+' of '+res.total+' correctly (pass mark '+res.passMark+'%).';
+    STATE.branches = res.branches || []; STATE.selectedBranch=null;
+    renderBranches(); go('pass');
+  } else {
+    setScoreRing('fail-score-prog','fail-score-num', res.percent, 'var(--danger)');
+    document.getElementById('fail-detail').textContent =
+      'You answered '+res.correct+' of '+res.total+' correctly (pass mark '+res.passMark+'%).';
+    if(res.identityRequired){
+      document.getElementById('fail-note').innerHTML =
+        'The identity verification during the exam was not satisfied, so the next step is not available. '+
+        'Your submission has been recorded. If you believe this is an error, please contact the firm.';
+    }
+    go('fail');
+  }
+}
+
+function setScoreRing(progId, numId, percent, color){
+  var p = Math.max(0, Math.min(100, Number(percent)||0));
+  document.getElementById(numId).textContent = p + '%';
+  var prog = document.getElementById(progId);
+  prog.style.stroke = color; prog.style.strokeDashoffset = CIRC_BIG;
+  setTimeout(function(){ prog.style.strokeDashoffset = CIRC_BIG * (1 - p/100); }, 80);
+}
+
+/* ---------- branch selection ---------- */
+function renderBranches(){
+  var grid=document.getElementById('branch-grid'); grid.innerHTML='';
+  STATE.branches.forEach(function(b){
+    var el=document.createElement('button'); el.type='button'; el.className='branch';
+    el.onclick=function(){ pickBranch(b.id, el); };
+    el.innerHTML='<div class="branch-name">'+escapeHtml(b.name)+'</div>'+
+                 '<div class="branch-addr">'+escapeHtml(b.address||'')+'</div>';
+    grid.appendChild(el);
+  });
+}
+function pickBranch(id, el){
+  STATE.selectedBranch = id;
+  document.querySelectorAll('#branch-grid .branch').forEach(function(x){ x.classList.remove('selected'); });
+  el.classList.add('selected');
+  document.getElementById('branch-btn').disabled = false;
+  document.getElementById('branch-err').textContent='';
+}
+async function submitBranch(){
+  if(!STATE.selectedBranch){ document.getElementById('branch-err').textContent='Please select an office to continue.'; return; }
+  setBtn('branch-btn', true, 'Scheduling…'); busy(true);
+  try {
+    const res = await rpc('choose_branch', { p_token: STATE.token, p_branch_id: STATE.selectedBranch });
+    if(!res.success){ document.getElementById('branch-err').textContent=res.message; return; }
+    document.getElementById('passcard-body').innerHTML =
+      pcRow('Candidate', STATE.passName||'—') +
+      pcRow('Result', 'PASSED ('+STATE.passPercent+'%)') +
+      pcRow('Selected office', res.branchName) +
+      pcRow('Office address', res.branchAddress||'—') +
+      pcRow('Interview date & time', res.interviewDate);
+    go('done'); toast('Interview scheduled.');
+  } catch(e){ document.getElementById('branch-err').textContent='Network error. Please try again.'; }
+  finally { busy(false); setBtn('branch-btn', false, 'Confirm office & get interview details'); }
+}
+function pcRow(k,v){ return '<div class="pc-row"><span class="pc-k">'+escapeHtml(k)+'</span><span class="pc-v">'+escapeHtml(v)+'</span></div>'; }
+
+/* ---------- anti-cheat: focus / tab-switch watch ---------- */
+function onBlur(){
+  if(document.getElementById('screen-exam').classList.contains('active') && !STATE.finished){
+    STATE.focusLoss++;
+    toast('You left the exam screen — this is recorded. Stay here; the clock keeps running.', true);
+  }
+}
+function onVis(){ if(document.hidden) onBlur(); }
+function attachFocusWatch(){ window.addEventListener('blur', onBlur); document.addEventListener('visibilitychange', onVis); }
+function detachFocusWatch(){ window.removeEventListener('blur', onBlur); document.removeEventListener('visibilitychange', onVis); }
+
+window.addEventListener('beforeunload', function(e){
+  if(document.getElementById('screen-exam').classList.contains('active') && !STATE.finished){
+    e.preventDefault(); e.returnValue=''; return '';
+  }
+});
+</script>
+</body>
+</html>
