@@ -363,8 +363,8 @@
 /* =====================================================================================
    1.  CONFIGURE THESE TWO VALUES  (Supabase > Project Settings > API). Both are public/safe.
    ===================================================================================== */
-const SUPABASE_URL      = 'https://YOUR-PROJECT-REF.supabase.co';
-const SUPABASE_ANON_KEY = 'YOUR-PUBLIC-ANON-KEY';
+const SUPABASE_URL      = 'https://rrefdspxbujvqntzjgpl.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJyZWZkc3B4YnVqdnFudHpqZ3BsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI1NjQwNTgsImV4cCI6MjA5ODE0MDA1OH0.R_YPFO9p79RdXOJQC000ZL_YW0RabJQDNg3JsvPZZd4';
 /* ===================================================================================== */
 
 let sb = null;
