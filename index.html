@@ -398,6 +398,19 @@ window.addEventListener('DOMContentLoaded', async function(){
         escapeHtml(boot.developerCredit).replace('Md Shakhawat Hossain FCA','<b>Md Shakhawat Hossain FCA</b>');
     }
   } catch (e) { toast('Could not reach the server. Check your connection and config.', true); }
+
+  // If the candidate clicked the e-mail sign-in link, they return here already verified — skip to the exam.
+  try {
+    const { data } = await sb.auth.getSession();
+    if (data && data.session && data.session.user && data.session.user.email) {
+      STATE.email = data.session.user.email.toLowerCase();
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+      go('ready');
+      toast('E-mail verified. You can begin the exam.');
+    }
+  } catch (e) {}
 });
 
 /* ---------- supabase + ui helpers ---------- */
